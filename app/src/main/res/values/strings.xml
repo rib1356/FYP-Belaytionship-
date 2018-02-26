@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FYP(Belaytionship)</string>
+
+    <string name="Button1">Button1</string>
+    <string name="Button2">Button2</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
