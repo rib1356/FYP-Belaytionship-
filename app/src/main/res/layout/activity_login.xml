@@ -7,7 +7,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/etUsername"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignLeft="@+id/etPassword"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/bLogin"
         android:layout_alignStart="@+id/bLogin"
-        android:layout_below="@+id/etUserName"
+        android:layout_below="@+id/etUsername"
         android:ems="10"
         android:hint="@string/etPassword"
         android:inputType="textPassword" />
