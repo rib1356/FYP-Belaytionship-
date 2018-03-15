@@ -13,24 +13,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginLeft="127dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="23dp"
         android:text="@string/tvUserName"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/tvWelcome"
-        android:layout_alignStart="@+id/tvWelcome"
-        android:layout_below="@+id/tvWelcome"
-        android:ems="10"
-        android:hint="@string/etUserName"
-        android:inputType="textPersonName" />
 
 
 </RelativeLayout>

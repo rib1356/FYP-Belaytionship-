@@ -14,15 +14,15 @@ public class MainPage extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
 
 
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
+       // final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
 
-        String message = username + "Welcome bitch";
+        String message = username + " Welcome bitch";
         tvWelcome.setText(message);
-        etUsername.setText(username);
+       // etUsername.setText(username);
 
 
     }
