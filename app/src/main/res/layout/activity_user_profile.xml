@@ -15,7 +15,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginRight="5dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,20 +42,22 @@
 
                 <TextView
                     android:id="@+id/tvName"
-                    android:layout_width="95dp"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tvName" />
+                    android:layout_weight="0"
+                    android:text="@string/tvName"
+                    android:textSize="16sp"/>
 
                 <EditText
                     android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:ems="10"
                     android:hint="@string/etName"
                     android:inputType="textPersonName"
-                    android:textSize="14sp" />
+                    android:maxLength="30"
+                    android:textSize="16sp" />
 
             </TableRow>
 
@@ -62,19 +68,21 @@
 
                 <TextView
                     android:id="@+id/tvAge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tvAge" />
+                    android:layout_weight="0"
+                    android:text="@string/tvAge"
+                    android:textSize="16sp"/>
 
                 <EditText
                     android:id="@+id/etAge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/etAge"
-                    android:inputType="textPersonName"
-                    android:textSize="14sp" />
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textSize="16sp" />
 
             </TableRow>
 
@@ -85,16 +93,22 @@
 
                 <TextView
                     android:id="@+id/tvGender"
-                    android:layout_width="match_parent"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tvGender" />
+                    android:layout_weight="0"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/tvGender"
+                    android:textSize="16sp"/>
 
                 <Spinner
                     android:id="@+id/sGender"
-                    android:layout_width="match_parent"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_weight="0"
+                    android:textSize="12sp"
+                    />
             </TableRow>
 
             <TextView
@@ -111,6 +125,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textSize="16sp"
                 android:text="@string/tvOnsights" />
 
             <TableRow
@@ -142,6 +159,9 @@
                 android:id="@+id/tvWorkedGrades"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:layout_weight="1"
                 android:text="@string/tvWorkedGrades" />
 
@@ -176,14 +196,19 @@
 
                 <TextView
                     android:id="@+id/tvYearsClimbing"
-                    android:layout_width="wrap_content"
+                    android:layout_width="151dp"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
                     android:text="@string/tvYearsClimbing" />
 
                 <Spinner
                     android:id="@+id/sYearsClimbing"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"/>
 
             </TableRow>
 
@@ -196,13 +221,18 @@
                     android:id="@+id/tvClimbingFreq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_weight="0"
                     android:text="@string/tvClimbingFreq" />
 
                 <Spinner
                     android:id="@+id/sClimbingFreq"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"/>
             </TableRow>
 
             <TableRow
@@ -212,8 +242,9 @@
 
                 <TextView
                     android:id="@+id/tvFavouriteCrag"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:text="@string/tvFavouriteCrag" />
 
                 <EditText
@@ -222,24 +253,43 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/etFavouriteCrag"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:maxLength="30"
+                    android:textSize="16sp"/>
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tvFavouriteRock"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:text="@string/tvFavouriteRock" />
 
                 <Spinner
                     android:id="@+id/sFavouriteRock"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvClimbingEx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/tvClimbingEx"
+                    android:textSize="16sp"/>
+
             </TableRow>
 
             <TableRow
@@ -247,18 +297,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tvClimbingEx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvClimbingEx" />
-
                 <EditText
                     android:id="@+id/etClimbingEx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textMultiLine"/>
             </TableRow>
 
         </LinearLayout>
