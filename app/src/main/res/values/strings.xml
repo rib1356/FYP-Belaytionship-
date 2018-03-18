@@ -63,6 +63,128 @@
         <item>f8c+</item>
     </string-array>
 
+    <string-array name="sTrad">
+        <item>None</item>
+        <item>XS</item>
+        <item>M</item>
+        <item>D</item>
+        <item>HD</item>
+        <item>VD</item>
+        <item>HVD</item>
+        <item>MS</item>
+        <item>S</item>
+        <item>HS</item>
+        <item>MVS</item>
+        <item>VS</item>
+        <item>HVS</item>
+        <item>E1</item>
+        <item>E2</item>
+        <item>E3</item>
+        <item>E4</item>
+        <item>E5</item>
+        <item>E6</item>
+        <item>E7</item>
+        <item>E8</item>
+        <item>E9</item>
+        <item>E10</item>
+        <item>E11</item>
+        <item>E12</item>
+    </string-array>
+
+    <string-array name="sSport">
+        <item>Unknown</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4a</item>
+        <item>4b</item>
+        <item>4c</item>
+        <item>5a</item>
+        <item>5b</item>
+        <item>5v</item>
+        <item>6a</item>
+        <item>6a+</item>
+        <item>6b</item>
+        <item>6b+</item>
+        <item>6c</item>
+        <item>6c+</item>
+        <item>7a</item>
+        <item>7a+</item>
+        <item>7b</item>
+        <item>7b+</item>
+        <item>7c</item>
+        <item>7c+</item>
+        <item>8a</item>
+        <item>8a+</item>
+        <item>8b</item>
+        <item>8b+</item>
+        <item>8c</item>
+        <item>8c+</item>
+        <item>9a</item>
+        <item>9ab</item>
+        <item>9b</item>
+        <item>9b+</item>
+        <item>9c</item>
+    </string-array>
+
+    <string-array name="sYearsClimbing">
+        <item>Unknown</item>
+        <item>Less than 1 year</item>
+        <item>1 to 2 years</item>
+        <item>3 to 5 years</item>
+        <item>5 to 7 years</item>
+        <item>8 to 10 years</item>
+        <item>11 to 20 years</item>
+        <item>More than 20 years</item>
+    </string-array>
+    
+    <string-array name="sClimbingFreq">
+        <item>Unknown</item>
+        <item>Once a week</item>
+        <item>Once a week + weekends</item>
+        <item>Most week days</item>
+        <item>Most week days + weekends</item>
+        <item>Most weekends</item>
+    </string-array>
+
+    <string-array name="sFavouriteRock">
+        <item>Unknown</item>
+        <item>Amphilbiolite S</item>
+        <item>Andesite</item>
+        <item>Artificial</item>
+        <item>Basalt</item>
+        <item>Chalk</item>
+        <item>Conglomerate</item>
+        <item>Culm</item>
+        <item>Diorites</item>
+        <item>Dolerite</item>
+        <item>Epidiorite</item>
+        <item>Gabbro</item>
+        <item>Gneiss</item>
+        <item>Granite</item>
+        <item>Granodiorite</item>
+        <item>Greenstone</item>
+        <item>Gritstone(quarried)</item>
+        <item>Gritstone</item>
+        <item>Ice</item>
+        <item>Ignimbrite</item>
+        <item>Killas slate</item>
+        <item>Limestone</item>
+        <item>Mica schist</item>
+        <item>Microgranite</item>
+        <item>Quartzite</item>
+        <item>Rhyolite</item>
+        <item>Sandstone(hard)</item>
+        <item>Sandstone(soft)</item>
+        <item>Schist</item>
+        <item>Serpentine</item>
+        <item>Shale</item>
+        <item>Slate</item>
+        <item>Trachyte</item>
+        <item>Volcanic tuff</item>
+        <item>Welded tuff</item>
+        <item>Welsh igneous</item>
+    </string-array>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_login2">Sign in</string>
 
