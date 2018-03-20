@@ -9,9 +9,11 @@
     <string name="tvUserName">Username</string>
     <string name="title_activity_user_profile">UserProfile</string>
 
+    <!-- Strings related to MainPage -->
+    <string name="bProfile">View/Edit your profile</string>
+    <string name="bLogout">Logout</string>
 
     <!-- Strings related to Profile -->
-    <string name="bProfile">View/Edit your profile</string>
     <string name="profileDivider">Your Details: </string>
     <string name="climbingDivider">Your Climbing Details: </string>
     <string name="tvName">Name: </string>
