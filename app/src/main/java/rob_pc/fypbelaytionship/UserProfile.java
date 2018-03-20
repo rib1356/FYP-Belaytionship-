@@ -1,7 +1,11 @@
 package rob_pc.fypbelaytionship;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -11,6 +15,8 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        //THIS NEEDS SORTING OUT!!
 
         final Spinner sGender = findViewById(R.id.sGender);
         ArrayAdapter<CharSequence> gAdapter = ArrayAdapter.createFromResource(this, R.array.sGender, android.R.layout.simple_spinner_item);
@@ -59,4 +65,28 @@ public class UserProfile extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_user_profile, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //This is where the action bar clicks will be going to do stuff
+        int id = item.getItemId();
+
+        if (id == R.id.action_save) {
+            System.out.println("Save button pressed");
+            Intent intent = new Intent(UserProfile.this, MainPage.class);
+            UserProfile.this.startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }
+
+
 }

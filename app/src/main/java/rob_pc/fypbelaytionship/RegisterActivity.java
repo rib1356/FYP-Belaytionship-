@@ -23,33 +23,32 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
-        final EditText etPassword = (EditText) findViewById(R.id.etPassword);
+        final EditText etUsername = findViewById(R.id.etUsername);
+        final EditText etPassword = findViewById(R.id.etPassword);
 
-        //final Button bLogin = (Button) findViewById(R.id.bLogin);
-        final Button bRegister = (Button) findViewById(R.id.bRegister);
+        final Button bRegister = findViewById(R.id.bRegister);
 
 
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String username = etUsername.getText().toString();
+                final String username = etUsername.getText().toString(); //Getting the text
                 final String password = etPassword.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) { //Happens when the response has been executed
                         try {
-                            Log.d("test", response);
+                            Log.d("PHP response: ", response);
                             JSONObject jsonResponse = new JSONObject(response); //Gets the string and converts into JSON
-                            boolean success = jsonResponse.getBoolean("success");
+                            boolean success = jsonResponse.getBoolean("success"); //Gets success from the JSON and sets variable
 
                             if(success){
-                                System.out.println("im hereYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class); //Move to login screen
                                 RegisterActivity.this.startActivity(intent);
                             }else{
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this); //Otherwise show error
                                 builder.setMessage("Register Failed")
                                        .setNegativeButton("Retry", null).create().show();
                             }
@@ -60,10 +59,12 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
 
-                RegisterRequest registerRequest = new RegisterRequest(username, password, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                RegisterRequest registerRequest = new RegisterRequest(username, password, responseListener); //Starts a new request passing in the username and password
+                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this); //Creates a queue with volley to post the information to the database (online)
                 queue.add(registerRequest);
             }
         });
     }
+
+
 }
