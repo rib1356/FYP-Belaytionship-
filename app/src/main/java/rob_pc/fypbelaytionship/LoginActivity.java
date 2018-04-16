@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         try {
+                            Log.d("NASOFKNASFNALSKFN", response);
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success"); //Get success from the PHP
 
