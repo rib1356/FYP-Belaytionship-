@@ -49,7 +49,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 + TABLE_NAME
                 + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_NAME + " TEXT,"
-                + COLUMN_AGE + " INTEGER,"
+                + COLUMN_AGE + " TEXT,"
                 + COLUMN_GENDER + " TEXT,"
                 + COLUMN_OSBOULDERING + " TEXT,"
                 + COLUMN_OSTRAD + " TEXT,"
@@ -138,7 +138,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 UserInformation profileList = new UserInformation(
                         cursor.getInt(idIdx),
                         cursor.getString(nameIdx),
-                        cursor.getInt(ageIdx),
+                        cursor.getString(ageIdx),
                         cursor.getString(genderIdx),
                         cursor.getString(osBoulderingIdx),
                         cursor.getString(osTradIdx),
@@ -161,7 +161,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public void updateProfile(int id, String name, int age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport,
+    public void updateProfile(int id, String name, String age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport,
                               String yearsClimbing, String climbingFreq, String favCrag, String favRock, String favClimbing) {
 
         SQLiteDatabase db = this.getWritableDatabase();

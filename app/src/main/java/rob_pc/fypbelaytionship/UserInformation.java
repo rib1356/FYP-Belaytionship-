@@ -5,7 +5,7 @@ public class UserInformation {
 
     private int id;
     private String name;
-    private int age;
+    private String age;
     private String gender;
     private String onSightBouldering;
     private String onSightTrad;
@@ -21,7 +21,7 @@ public class UserInformation {
 
 
 
-    public UserInformation(int id, String name, int age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport, String yearsClimbing, String climbingFreq, String favCrag, String favRock, String favClimbing) {
+    public UserInformation(int id, String name, String age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport, String yearsClimbing, String climbingFreq, String favCrag, String favRock, String favClimbing) {
 
         this.id = id;
         this.name = name;
@@ -57,11 +57,11 @@ public class UserInformation {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
