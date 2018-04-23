@@ -35,5 +35,15 @@
         android:layout_centerVertical="true"
         android:text="@string/bLogout" />
 
+    <Button
+        android:id="@+id/bMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bLogout"
+        android:layout_alignStart="@+id/bLogout"
+        android:layout_below="@+id/bProfile"
+        android:layout_marginTop="26dp"
+        android:text="@string/bMaps" />
+
 
 </RelativeLayout>

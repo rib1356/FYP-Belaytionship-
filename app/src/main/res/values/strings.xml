@@ -12,6 +12,11 @@
     <!-- Strings related to MainPage -->
     <string name="bProfile">View/Edit your profile</string>
     <string name="bLogout">Logout</string>
+    <string name="bMaps">Maps</string>
+
+
+    <string name="GoogleMapsAPIKey">AIzaSyBsq5zq7YfwqkadvhABUEKG7IhoX9WgvL0</string>
+
 
     <!-- Strings related to Profile -->
     <string name="profileDivider">Your Details: </string>
@@ -32,9 +37,9 @@
 
     <!-- Strings related to Spinners -->
     <string-array name="sGender">
-    <item>Unknown</item>
-    <item>Male</item>
-    <item>Female</item>
+        <item>Unknown</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 
     <string-array name="sBouldering">
@@ -138,7 +143,7 @@
         <item>11 to 20 years</item>
         <item>More than 20 years</item>
     </string-array>
-    
+
     <string-array name="sClimbingFreq">
         <item>Unknown</item>
         <item>Once a week</item>
