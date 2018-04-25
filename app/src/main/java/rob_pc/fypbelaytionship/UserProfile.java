@@ -127,6 +127,12 @@ public class UserProfile extends AppCompatActivity {
             UserProfile.this.startActivity(intent);
             return true;
         }
+
+        if(id == R.id.action_home){
+            Intent intent = new Intent(UserProfile.this, MainPage.class);
+            UserProfile.this.startActivity(intent);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

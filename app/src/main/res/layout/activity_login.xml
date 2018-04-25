@@ -10,12 +10,9 @@
         android:id="@+id/etUsername"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/etPassword"
-        android:layout_alignEnd="@+id/etPassword"
-        android:layout_alignLeft="@+id/etPassword"
-        android:layout_alignRight="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_marginBottom="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/etUserName"
         android:inputType="textPersonName" />
@@ -24,9 +21,9 @@
         android:id="@+id/etPassword"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/bLogin"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="87dp"
         android:ems="10"
         android:hint="@string/etPassword"
         android:inputType="textPassword" />
@@ -35,8 +32,9 @@
         android:id="@+id/bLogin"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="146dp"
         android:text="@string/bLogin" />
 
 
@@ -44,9 +42,9 @@
         android:id="@+id/bRegister"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/bLogin"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="205dp"
         android:text="@string/bRegister" />
 
 </RelativeLayout>

@@ -33,15 +33,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Boolean mLocationPermissionGranted = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
         getLocationPermission();
-
-
     }
 
     private void getDeviceLocation() {
@@ -59,8 +56,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             Log.d(TAG, "onComplete: Found location");
                             Location currentLocation = (Location) task.getResult();
 
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
-
+                            //---------------------------REMEMBER TO CHANGE THIS------------------------------------------------------------------------------------------------------------
+                            moveCamera(new LatLng(54.570455, 1.328982), DEFAULT_ZOOM);
                         } else {
                             Log.d(TAG, "onComplete: Current location is null");
                             Toast.makeText(MapActivity.this, "Unable to get current location", Toast.LENGTH_LONG).show();
