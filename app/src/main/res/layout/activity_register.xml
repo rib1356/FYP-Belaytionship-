@@ -10,10 +10,9 @@
         android:id="@+id/etUsername"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_alignLeft="@+id/etPassword"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_marginTop="79dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/etUserName"
         android:inputType="textPersonName" />
@@ -22,9 +21,9 @@
         android:id="@+id/etPassword"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/etUsername"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="89dp"
         android:ems="10"
         android:hint="@string/etPassword"
         android:inputType="textPassword" />
@@ -33,9 +32,9 @@
         android:id="@+id/bRegister"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_alignLeft="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
         android:text="@string/bRegister" />
 
 </RelativeLayout>
