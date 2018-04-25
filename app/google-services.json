@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "988920867034",
+    "firebase_url": "https://belaytionships.firebaseio.com",
+    "project_id": "belaytionships",
+    "storage_bucket": "belaytionships.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988920867034:android:ef5731e86d1620fc",
+        "android_client_info": {
+          "package_name": "rob_pc.fypbelaytionship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988920867034-v060dkkodtj834idqsf067a0gbrc2fcq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3M2Szs-QgSkiDu4sq4sTXaluGFAnedh4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
