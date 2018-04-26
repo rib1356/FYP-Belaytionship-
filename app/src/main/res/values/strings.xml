@@ -5,7 +5,7 @@
     <string name="bRegister">Register</string>
     <string name="bLogin">Login</string>
     <string name="etPassword">Password</string>
-    <string name="etUserName">Username</string>
+    <string name="etEmail">Email</string>
     <string name="tvUserName">Username</string>
     <string name="title_activity_user_profile">UserProfile</string>
 
@@ -13,6 +13,7 @@
     <string name="bProfile">View/Edit your profile</string>
     <string name="bLogout">Logout</string>
     <string name="bMaps">Maps</string>
+    <string name="bHS">Belay safety</string>
 
 
     <string name="GoogleMapsAPIKey">AIzaSyBsq5zq7YfwqkadvhABUEKG7IhoX9WgvL0</string>
