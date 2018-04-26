@@ -31,19 +31,28 @@
         android:id="@+id/bLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="185dp"
         android:text="@string/bLogout" />
 
     <Button
         android:id="@+id/bMaps"
-        android:layout_width="wrap_content"
+        android:layout_width="189dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bLogout"
-        android:layout_alignStart="@+id/bLogout"
-        android:layout_below="@+id/bProfile"
-        android:layout_marginTop="26dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="141dp"
         android:text="@string/bMaps" />
+
+    <Button
+        android:id="@+id/bHS"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="206dp"
+        android:text="@string/bHS" />
 
 
 </RelativeLayout>

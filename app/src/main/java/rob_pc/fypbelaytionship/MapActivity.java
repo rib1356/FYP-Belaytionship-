@@ -2,6 +2,7 @@ package rob_pc.fypbelaytionship;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -10,6 +11,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -144,6 +147,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_map_activity, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //This is where the action bar clicks will be going to do stuff
+        int id = item.getItemId();
+
+        if(id == R.id.action_home){
+            Intent intent = new Intent(MapActivity.this, MainPage.class);
+            MapActivity.this.startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
 

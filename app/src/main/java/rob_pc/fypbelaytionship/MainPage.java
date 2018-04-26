@@ -33,7 +33,7 @@ public class MainPage extends AppCompatActivity {
         final TextView tvWelcome = findViewById(R.id.tvWelcome);
         final Button bProfile = findViewById(R.id.bProfile);
         final Button bLogout = findViewById(R.id.bLogout);
-        final Button bMap = findViewById(R.id.bMaps);
+        final Button bHS = findViewById(R.id.bHS);
 
         String username = "";
 
@@ -64,6 +64,14 @@ public class MainPage extends AppCompatActivity {
                 editor.commit(); // commit changes
 
                 Intent intent = new Intent(MainPage.this, LoginActivity.class);
+                MainPage.this.startActivity(intent);
+            }
+        });
+
+        bHS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPage.this, HealthSafety.class);
                 MainPage.this.startActivity(intent);
             }
         });

@@ -3,15 +3,21 @@ package rob_pc.fypbelaytionship;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,24 +28,28 @@ import rob_pc.fypbelaytionship.models.User;
 public class LoginActivity extends AppCompatActivity {
 
     //Firebase
-    FirebaseDatabase database;
-    DatabaseReference users;
+//    FirebaseDatabase database;
+//    DatabaseReference users;
+
+    FirebaseAuth mAuth;
+    EditText etEmail, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        //Firebase
-        database = FirebaseDatabase.getInstance();
-        users = database.getReference("User");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+//        //Firebase
+//        database = FirebaseDatabase.getInstance();
+//        users = database.getReference("User");
 
-        final EditText etUsername = findViewById(R.id.etUsername);
-        final EditText etPassword = findViewById(R.id.etPassword);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
 
         final Button bRegister = findViewById(R.id.bRegister);
         final Button bLogin = findViewById(R.id.bLogin);
+
+        mAuth = FirebaseAuth.getInstance();
+
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         if(pref.getBoolean("logged",false)){ //If user is logged it is set to true, which means this if statement executes
@@ -51,55 +61,57 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
-
             }
         });
 
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                login();
 
-                final String username = etUsername.getText().toString();
-                final String password = etPassword.getText().toString();
-
-                login(username, password);
-
-//
             }
         });
 
     }
+    private void login(){
 
-    private void login(final String username, final String password){
-        users.addListenerForSingleValueEvent(new ValueEventListener() {
+        final String email = etEmail.getText().toString();
+        final String password = etPassword.getText().toString();
+
+        if(email.isEmpty()){
+            etEmail.setError("Email is required");
+            etEmail.requestFocus();
+            return;
+        }
+
+        if(password.isEmpty()){
+            etPassword.setError("Password is required");
+            etPassword.requestFocus();
+            return;
+        }
+        if(password.length() < 6){
+            etPassword.setError("Minimum password length of 6");
+            etPassword.requestFocus();
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(username).exists())
-                    if(!username.isEmpty()) {
-                        User login = dataSnapshot.child(username).getValue(User.class);
-                        if(login.getPassword().equals(password)){
-                            Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_SHORT).show();
-                            storeLogin(username);
-                            goToLoginActivity();
-                        }else{
-                            Toast.makeText(LoginActivity.this, "Password is wrong", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else{
-                        Toast.makeText(LoginActivity.this, "Username is not registered", Toast.LENGTH_SHORT).show();
-                    }
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    storeLogin(email);
+                    goToLoginActivity();
+                }else{
+                    Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                 }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
             }
         });
+
     }
 
-    private void storeLogin (String username){
+    private void storeLogin (String email){
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("username", username);
+        editor.putString("username", email);
         editor.putBoolean("logged", true);
         editor.commit();
 
@@ -111,7 +123,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-
+//    private void login(final String username, final String password){
+//        users.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.child(username).exists())
+//                    if(!username.isEmpty()) {
+//                        User login = dataSnapshot.child(username).getValue(User.class);
+//                        if(login.getPassword().equals(password)){
+//                            Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_SHORT).show();
+//                            storeLogin(username);
+//                            goToLoginActivity();
+//                        }else{
+//                            Toast.makeText(LoginActivity.this, "Password is wrong", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                    else{
+//                        Toast.makeText(LoginActivity.this, "Username is not registered", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 //    Response.Listener<String> responseListener = new Response.Listener<String>() {
 //                    @Override
 //                    public void onResponse(String response) {
