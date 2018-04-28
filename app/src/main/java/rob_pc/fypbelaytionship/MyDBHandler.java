@@ -104,62 +104,62 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return id;
     }
 
-    public List<UserInformation> getAll() {
+ //   public List<UserInformation> getAll() {
 
-        //Create empty list
-        List<UserInformation> list = new ArrayList<UserInformation>();
-
-        //Connect to db and read
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        //Execute select statement
-        String selectQuery = "SELECT * FROM " + TABLE_NAME;
-
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            //Get position of each of the column names
-            int idIdx = cursor.getColumnIndex(COLUMN_ID);
-            int nameIdx = cursor.getColumnIndex(COLUMN_NAME);
-            int ageIdx = cursor.getColumnIndex(COLUMN_AGE);
-            int genderIdx = cursor.getColumnIndex(COLUMN_GENDER);
-            int osBoulderingIdx = cursor.getColumnIndex(COLUMN_OSBOULDERING);
-            int osTradIdx = cursor.getColumnIndex(COLUMN_OSTRAD);
-            int osSportIdx = cursor.getColumnIndex(COLUMN_OSSPORT);
-            int rpBoulderingIdx = cursor.getColumnIndex(COLUMN_RPBOULDERING);
-            int rpTradIdx = cursor.getColumnIndex(COLUMN_RPTRAD);
-            int rpSportIdx = cursor.getColumnIndex(COLUMN_RPSPORT);
-            int yearsClimbingIdx = cursor.getColumnIndex(COLUMN_YEARSCLIMBING);
-            int climbingFreqIdx = cursor.getColumnIndex(COLUMN_CLIMBINGFREQ);
-            int favCragIdx = cursor.getColumnIndex(COLUMN_FAVCRAG);
-            int favRockIdx = cursor.getColumnIndex(COLUMN_FAVROCK);
-            int favClimbingIdx = cursor.getColumnIndex(COLUMN_FAVCLIMBING);
-            do {
-                // Create list object for current database record
-                UserInformation profileList = new UserInformation(
-                        cursor.getInt(idIdx),
-                        cursor.getString(nameIdx),
-                        cursor.getString(ageIdx),
-                        cursor.getString(genderIdx),
-                        cursor.getString(osBoulderingIdx),
-                        cursor.getString(osTradIdx),
-                        cursor.getString(osSportIdx),
-                        cursor.getString(rpBoulderingIdx),
-                        cursor.getString(rpTradIdx),
-                        cursor.getString(rpSportIdx),
-                        cursor.getString(yearsClimbingIdx),
-                        cursor.getString(climbingFreqIdx),
-                        cursor.getString(favCragIdx),
-                        cursor.getString(favRockIdx),
-                        cursor.getString(favClimbingIdx)
-
-                );
-
-                list.add(profileList);
-
-            } while (cursor.moveToNext());
-        }
-        return list;
-    }
+//        //Create empty list
+//        List<UserInformation> list = new ArrayList<UserInformation>();
+//
+//        //Connect to db and read
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        //Execute select statement
+//        String selectQuery = "SELECT * FROM " + TABLE_NAME;
+//
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//        if (cursor.moveToFirst()) {
+//            //Get position of each of the column names
+//            int idIdx = cursor.getColumnIndex(COLUMN_ID);
+//            int nameIdx = cursor.getColumnIndex(COLUMN_NAME);
+//            int ageIdx = cursor.getColumnIndex(COLUMN_AGE);
+//            int genderIdx = cursor.getColumnIndex(COLUMN_GENDER);
+//            int osBoulderingIdx = cursor.getColumnIndex(COLUMN_OSBOULDERING);
+//            int osTradIdx = cursor.getColumnIndex(COLUMN_OSTRAD);
+//            int osSportIdx = cursor.getColumnIndex(COLUMN_OSSPORT);
+//            int rpBoulderingIdx = cursor.getColumnIndex(COLUMN_RPBOULDERING);
+//            int rpTradIdx = cursor.getColumnIndex(COLUMN_RPTRAD);
+//            int rpSportIdx = cursor.getColumnIndex(COLUMN_RPSPORT);
+//            int yearsClimbingIdx = cursor.getColumnIndex(COLUMN_YEARSCLIMBING);
+//            int climbingFreqIdx = cursor.getColumnIndex(COLUMN_CLIMBINGFREQ);
+//            int favCragIdx = cursor.getColumnIndex(COLUMN_FAVCRAG);
+//            int favRockIdx = cursor.getColumnIndex(COLUMN_FAVROCK);
+//            int favClimbingIdx = cursor.getColumnIndex(COLUMN_FAVCLIMBING);
+//            do {
+//                // Create list object for current database record
+//                UserInformation profileList = new UserInformation(
+//                        cursor.getInt(idIdx),
+//                        cursor.getString(nameIdx),
+//                        cursor.getString(ageIdx),
+//                        cursor.getString(genderIdx),
+//                        cursor.getString(osBoulderingIdx),
+//                        cursor.getString(osTradIdx),
+//                        cursor.getString(osSportIdx),
+//                        cursor.getString(rpBoulderingIdx),
+//                        cursor.getString(rpTradIdx),
+//                        cursor.getString(rpSportIdx),
+//                        cursor.getString(yearsClimbingIdx),
+//                        cursor.getString(climbingFreqIdx),
+//                        cursor.getString(favCragIdx),
+//                        cursor.getString(favRockIdx),
+//                        cursor.getString(favClimbingIdx)
+//
+//                );
+//
+//                list.add(profileList);
+//
+//            } while (cursor.moveToNext());
+//        }
+//        return list;
+ //   }
 
     public void updateProfile(int id, String name, String age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport,
                               String yearsClimbing, String climbingFreq, String favCrag, String favRock, String favClimbing) {

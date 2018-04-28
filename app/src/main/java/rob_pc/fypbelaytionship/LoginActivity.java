@@ -50,10 +50,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         if(pref.getBoolean("logged",false)){ //If user is logged it is set to true, which means this if statement executes
-            goToLoginActivity();
+            gotoMainPage();
         }
 
         bRegister.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +72,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    private void login(){
+    
+    public void login(){
 
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
@@ -81,34 +81,35 @@ public class LoginActivity extends AppCompatActivity {
         if(email.isEmpty()){
             etEmail.setError("Email is required");
             etEmail.requestFocus();
-            return;
         }
 
         if(password.isEmpty()){
             etPassword.setError("Password is required");
             etPassword.requestFocus();
-            return;
+
         }
         if(password.length() < 6){
             etPassword.setError("Minimum password length of 6");
             etPassword.requestFocus();
         }
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    storeLogin(email);
-                    goToLoginActivity();
-                }else{
-                    Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        storeLogin(email);
+                        gotoMainPage();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        etEmail.setError("Check email");
+                        etPassword.setError("Check password");
+                    }
                 }
-            }
-        });
+            });
+
 
     }
 
-    private void storeLogin (String email){
+    public void storeLogin (String email){
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("username", email);
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void goToLoginActivity(){
+    public void gotoMainPage(){
         Intent intent = new Intent(LoginActivity.this, MainPage.class);
         LoginActivity.this.startActivity(intent);
     }

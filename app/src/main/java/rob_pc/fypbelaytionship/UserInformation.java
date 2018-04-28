@@ -19,27 +19,30 @@ public class UserInformation {
     private String favRock;
     private String favClimbing;
 
-
-
-    public UserInformation(int id, String name, String age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport, String yearsClimbing, String climbingFreq, String favCrag, String favRock, String favClimbing) {
-
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.onSightBouldering = onSightBouldering;
-        this.onSightTrad = onSightTrad;
-        this.onSightSport = onSightSport;
-        this.workedBouldering = workedBouldering;
-        this.workedTrad = workedTrad;
-        this.workedSport = workedSport;
-        this.yearsClimbing = yearsClimbing;
-        this.climbingFreq = climbingFreq;
-        this.favCrag = favCrag;
-        this.favRock = favRock;
-        this.favClimbing = favClimbing;
+    public UserInformation(){
 
     }
+
+
+//    public UserInformation(int id, String name, String age, String gender, String onSightBouldering, String onSightTrad, String onSightSport, String workedBouldering, String workedTrad, String workedSport, String yearsClimbing, String climbingFreq, String favCrag, String favRock, String favClimbing) {
+//
+//        this.id = id;
+//        this.name = name;
+//        this.age = age;
+//        this.gender = gender;
+//        this.onSightBouldering = onSightBouldering;
+//        this.onSightTrad = onSightTrad;
+//        this.onSightSport = onSightSport;
+//        this.workedBouldering = workedBouldering;
+//        this.workedTrad = workedTrad;
+//        this.workedSport = workedSport;
+//        this.yearsClimbing = yearsClimbing;
+//        this.climbingFreq = climbingFreq;
+//        this.favCrag = favCrag;
+//        this.favRock = favRock;
+//        this.favClimbing = favClimbing;
+//
+//    }
     public int getId() {
         return id;
     }
