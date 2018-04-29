@@ -6,13 +6,19 @@
     android:orientation="vertical"
     tools:context="rob_pc.fypbelaytionship.UserProfile">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
         android:layout_marginRight="5dp"
-        >
+        android:layout_marginStart="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="@string/tvName"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/etName"
@@ -65,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="@string/tvAge"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/etAge"
@@ -88,20 +94,19 @@
                     android:id="@+id/tvGender"
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:layout_marginTop="3dp"
+                    android:layout_weight="0"
                     android:text="@string/tvGender"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/sGender"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="7dp"
+                    android:layout_marginTop="3dp"
                     android:layout_weight="0"
-                    android:textSize="12sp"
-                    />
+                    android:textSize="12sp" />
             </TableRow>
 
             <TextView
@@ -117,11 +122,11 @@
                 android:id="@+id/tvOnsights"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
-                android:textSize="16sp"
-                android:text="@string/tvOnsights" />
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:text="@string/tvOnsights"
+                android:textSize="16sp" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -152,11 +157,11 @@
                 android:id="@+id/tvWorkedGrades"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
                 android:layout_weight="1"
-                android:text="@string/tvWorkedGrades" />
+                android:text="@string/tvWorkedGrades"
+                android:textSize="16sp" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -191,17 +196,17 @@
                     android:id="@+id/tvYearsClimbing"
                     android:layout_width="151dp"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
-                    android:text="@string/tvYearsClimbing" />
+                    android:layout_marginTop="3dp"
+                    android:text="@string/tvYearsClimbing"
+                    android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/sYearsClimbing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </TableRow>
 
@@ -214,18 +219,18 @@
                     android:id="@+id/tvClimbingFreq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
                     android:layout_weight="0"
-                    android:text="@string/tvClimbingFreq" />
+                    android:text="@string/tvClimbingFreq"
+                    android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/sClimbingFreq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </TableRow>
 
             <TableRow
@@ -237,8 +242,8 @@
                     android:id="@+id/tvFavouriteCrag"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="@string/tvFavouriteCrag" />
+                    android:text="@string/tvFavouriteCrag"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/etFavouriteCrag"
@@ -248,7 +253,7 @@
                     android:hint="@string/etFavouriteCrag"
                     android:inputType="textPersonName"
                     android:maxLength="30"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
             </TableRow>
 
             <TableRow
@@ -260,14 +265,14 @@
                     android:id="@+id/tvFavouriteRock"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="@string/tvFavouriteRock" />
+                    android:text="@string/tvFavouriteRock"
+                    android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/sFavouriteRock"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </TableRow>
 
             <TableRow
@@ -281,24 +286,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:text="@string/tvClimbingEx"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/etClimbingEx"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine" />
             </TableRow>
 
         </LinearLayout>
     </ScrollView>
+
+
+
 
 </LinearLayout>

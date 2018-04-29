@@ -4,14 +4,17 @@ package rob_pc.fypbelaytionship;
 import android.content.Intent;
 
 import android.nfc.Tag;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +52,7 @@ public class UserProfile extends AppCompatActivity {
     Spinner sFavouriteRock;
     EditText etFavouriteClimb;
 
-    MyDBHandler dbHandler;
+    private ProgressBar progressBar;
 
     //Firebase database
     private FirebaseDatabase mFirebaseDatabase;
@@ -70,6 +73,8 @@ public class UserProfile extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         mAuthListener = new AuthStateListener() {
             @Override
@@ -88,21 +93,21 @@ public class UserProfile extends AppCompatActivity {
         };
         populateSpinners();
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                loadData(dataSnapshot);
-            }
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child("users").child(userID).exists()){ //Checking if the user exists in the database
+                        loadData(dataSnapshot);
+                    }
+                    else {
+                        //Do nothing and allow user to create profile
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-//            loadProfileData();
-//
-//            getDataTest();
-
+                }
+            });
     }
 
     public void populateSpinners() {
@@ -173,6 +178,7 @@ public class UserProfile extends AppCompatActivity {
         if (id == R.id.action_save) {
             Log.d("Database Response:", "Save button pressed");
             firebaseSave();
+            progressBar.setVisibility(View.VISIBLE);
 //            final MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 //
 //
@@ -196,6 +202,14 @@ public class UserProfile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    public boolean userExists(){
+//
+//        DataSnapshot snapshot = new DataSnapshot();
+//        Log.d(TAG, "userExists: " + snapshot);
+//
+//
+//    }
 
     @Override
     public void onStart() {
@@ -238,7 +252,6 @@ public class UserProfile extends AppCompatActivity {
 
     }
 
-
     private void loadData(DataSnapshot dataSnapshot) {
 
 
@@ -254,46 +267,105 @@ public class UserProfile extends AppCompatActivity {
             UserInformation uInfo = new UserInformation();
             Log.d(TAG, "loadData:Test2 " + ds.child(userID).getValue());
             String name = ds.child(userID).getValue(UserInformation.class).getName();
-            String age =  ds.child(userID).getValue(UserInformation.class).getAge();
-            String gender =  ds.child(userID).getValue(UserInformation.class).getGender();
-            String onSightBouldering =  ds.child(userID).getValue(UserInformation.class).getOnSightBouldering();
-            String onSightTrad =  ds.child(userID).getValue(UserInformation.class).getOnSightTrad();
-            String onSightSport =  ds.child(userID).getValue(UserInformation.class).getOnSightSport();
-            String workedBouldering =  ds.child(userID).getValue(UserInformation.class).getWorkedBouldering();
-            String workedTrad =  ds.child(userID).getValue(UserInformation.class).getWorkedTrad();
-            String workedSport =  ds.child(userID).getValue(UserInformation.class).getWorkedSport();
-            String yearsClimbing =  ds.child(userID).getValue(UserInformation.class).getYearsClimbing();
-            String climbingFreq =  ds.child(userID).getValue(UserInformation.class).getClimbingFreq();
-            String favCrag =  ds.child(userID).getValue(UserInformation.class).getFavCrag();
-            String favRock =  ds.child(userID).getValue(UserInformation.class).getFavRock();
-            Log.d(TAG, "loadData: " + name + gender + age);
+            String age = ds.child(userID).getValue(UserInformation.class).getAge();
+            String gender = ds.child(userID).getValue(UserInformation.class).getGender();
+            String onSightBouldering = ds.child(userID).getValue(UserInformation.class).getOnSightBouldering();
+            String onSightTrad = ds.child(userID).getValue(UserInformation.class).getOnSightTrad();
+            String onSightSport = ds.child(userID).getValue(UserInformation.class).getOnSightSport();
+            String workedBouldering = ds.child(userID).getValue(UserInformation.class).getWorkedBouldering();
+            String workedTrad = ds.child(userID).getValue(UserInformation.class).getWorkedTrad();
+            String workedSport = ds.child(userID).getValue(UserInformation.class).getWorkedSport();
+            String yearsClimbing = ds.child(userID).getValue(UserInformation.class).getYearsClimbing();
+            String climbingFreq = ds.child(userID).getValue(UserInformation.class).getClimbingFreq();
+            String favCrag = ds.child(userID).getValue(UserInformation.class).getFavCrag();
+            String favRock = ds.child(userID).getValue(UserInformation.class).getFavRock();
+            String favClimbing = ds.child(userID).getValue(UserInformation.class).getFavClimbing();
 
-            uInfo.setName(UserInformation.class.getName());
-//            uInfo.setAge(ds.child(userID).getValue(UserInformation.class).getAge());
-//            uInfo.setGender(ds.child(userID).getValue(UserInformation.class).getGender());
-//            uInfo.setonSightBouldering(ds.child(userID).getValue(UserInformation.class).getOnSightBouldering());
-//            uInfo.setWorkedBouldering(ds.child(userID).getValue(UserInformation.class).getWorkedBouldering());
-//            uInfo.setOnSightTrad(ds.child(userID).getValue(UserInformation.class).getOnSightTrad());
-//            uInfo.setWorkedTrad(ds.child(userID).getValue(UserInformation.class).getWorkedTrad());
-//            uInfo.setOnSightSport(ds.child(userID).getValue(UserInformation.class).getOnSightSport());
-//            uInfo.setWorkedSport(ds.child(userID).getValue(UserInformation.class).getWorkedSport());
-//            uInfo.setYearsClimbing(ds.child(userID).getValue(UserInformation.class).getYearsClimbing());
-//            uInfo.setClimbingFreq(ds.child(userID).getValue(UserInformation.class).getClimbingFreq());
-//            uInfo.setFavCrag(ds.child(userID).getValue(UserInformation.class).getFavCrag());
-//            uInfo.setFavRock(ds.child(userID).getValue(UserInformation.class).getFavRock());
-//            uInfo.setFavClimbing(ds.child(userID).getValue(UserInformation.class).getFavClimbing());
-            Log.d(TAG, "loadData:Test3 " + uInfo.getName());
+            Log.d(TAG, "loadData: " + name + gender + age + onSightBouldering + onSightTrad + onSightSport);
 
             etName.setText(name, TextView.BufferType.EDITABLE);
             etAge.setText(age, TextView.BufferType.EDITABLE);
+            etFavouriteCrag.setText(favCrag, TextView.BufferType.EDITABLE);
+            etFavouriteClimb.setText(favClimbing, TextView.BufferType.EDITABLE);
+            //HOW TO SET AGE?
 
+            ArrayAdapter<CharSequence> gAdapter = ArrayAdapter.createFromResource(this, R.array.sGender, android.R.layout.simple_spinner_item);
+            gAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sGender.setAdapter(gAdapter);
+            if (gender != null) {
+                int spinnerPosition = gAdapter.getPosition(gender);
+                sGender.setSelection(spinnerPosition);
+            }
+
+            ArrayAdapter<CharSequence> bAdapter = ArrayAdapter.createFromResource(this, R.array.sBouldering, android.R.layout.simple_spinner_item);
+            bAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sBouldering.setAdapter(bAdapter);
+            if (onSightBouldering != null) {
+                int spinnerPosition = bAdapter.getPosition(onSightBouldering);
+                sBouldering.setSelection(spinnerPosition);
+            }
+            sBouldering1.setAdapter(bAdapter);
+            if (workedBouldering != null) {
+                int spinnerPosition = bAdapter.getPosition(workedBouldering);
+                sBouldering1.setSelection(spinnerPosition);
+            }
+
+            ArrayAdapter<CharSequence> tAdapter = ArrayAdapter.createFromResource(this, R.array.sTrad, android.R.layout.simple_spinner_item);
+            tAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sTrad.setAdapter(tAdapter);
+            if (onSightTrad != null) {
+                int spinnerPosition = tAdapter.getPosition(onSightTrad);
+                sTrad.setSelection(spinnerPosition);
+            }
+            sTrad1.setAdapter(tAdapter);
+            if (workedTrad != null) {
+                int spinnerPosition = tAdapter.getPosition(workedTrad);
+                sTrad1.setSelection(spinnerPosition);
+            }
+
+            ArrayAdapter<CharSequence> sAdapter = ArrayAdapter.createFromResource(this, R.array.sSport, android.R.layout.simple_spinner_item);
+            sAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sSport.setAdapter(sAdapter);
+            if (onSightSport != null) {
+                int spinnerPosition = sAdapter.getPosition(onSightSport);
+                sSport.setSelection(spinnerPosition);
+            }
+            sSport1.setAdapter(sAdapter);
+            if (workedSport != null) {
+                int spinnerPosition = sAdapter.getPosition(workedSport);
+                sSport1.setSelection(spinnerPosition);
+            }
+
+            ArrayAdapter<CharSequence> ycAdapter = ArrayAdapter.createFromResource(this, R.array.sYearsClimbing, android.R.layout.simple_spinner_item);
+            ycAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sYearsClimbing.setAdapter(ycAdapter);
+            if (yearsClimbing != null) {
+                int spinnerPosition = ycAdapter.getPosition(yearsClimbing);
+                sYearsClimbing.setSelection(spinnerPosition);
+            }
+
+            ArrayAdapter<CharSequence> cfAdapter = ArrayAdapter.createFromResource(this, R.array.sClimbingFreq, android.R.layout.simple_spinner_item);
+            cfAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sClimbingFreq.setAdapter(cfAdapter);
+            if (climbingFreq != null) {
+                int spinnerPosition = cfAdapter.getPosition(climbingFreq);
+                sClimbingFreq.setSelection(spinnerPosition);
+            }
+
+            ArrayAdapter<CharSequence> frAdapter = ArrayAdapter.createFromResource(this, R.array.sFavouriteRock, android.R.layout.simple_spinner_item);
+            frAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sFavouriteRock.setAdapter(frAdapter);
+            if (favRock != null) {
+                int spinnerPosition = frAdapter.getPosition(favRock);
+                sFavouriteRock.setSelection(spinnerPosition);
+            }
 
         }
 
 
     }
-}
 
+    private void comments(){
 //    public void saveProfileData(){
 //
 //        dbHandler = new MyDBHandler(this, null, null, 1);
@@ -534,3 +606,7 @@ public class UserProfile extends AppCompatActivity {
 //            DatabaseRequest databaseRequest = new DatabaseRequest(username, name, responseListener); //Starts a new request passing in the username and password
 //            RequestQueue queue = Volley.newRequestQueue(UserProfile.this); //Creates a queue with volley to post the information to the database (online)
 //            queue.add(databaseRequest);
+    }
+}
+
+
