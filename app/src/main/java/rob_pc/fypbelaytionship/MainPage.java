@@ -43,7 +43,7 @@ public class MainPage extends AppCompatActivity {
             username = prefs.getString("username", "No username defined"); //"No name defined" is the default value.
         }
 
-        String message = username + " Welcome bitch";
+        String message = username + " Welcome";
         tvWelcome.setText(message);
 
         bProfile.setOnClickListener(new View.OnClickListener() {
