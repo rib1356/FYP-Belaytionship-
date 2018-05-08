@@ -179,17 +179,7 @@ public class UserProfile extends AppCompatActivity {
             Log.d("Database Response:", "Save button pressed");
             firebaseSave();
             progressBar.setVisibility(View.VISIBLE);
-//            final MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
-//
-//
-//            if(dbHandler.checkForTables()){ //Check if a table exists If true update
-//                updateProfileData();
-//            }
-//            else { //Else create new data
-//                saveProfileData();
-//            }
 
-            //Otherwise save
             Intent intent = new Intent(UserProfile.this, MainPage.class);
             UserProfile.this.startActivity(intent);
             return true;
@@ -202,14 +192,6 @@ public class UserProfile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public boolean userExists(){
-//
-//        DataSnapshot snapshot = new DataSnapshot();
-//        Log.d(TAG, "userExists: " + snapshot);
-//
-//
-//    }
 
     @Override
     public void onStart() {
@@ -254,18 +236,10 @@ public class UserProfile extends AppCompatActivity {
 
     private void loadData(DataSnapshot dataSnapshot) {
 
-
-        Log.d(TAG, "loadData:Test1 " + dataSnapshot.getChildren());
-
+        Log.d(TAG, "loadData: Preparing to find user and load data");
         //Looping through all of the data
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-            Object all = ds.child(userID).getValue();
-
-            //Log.d(TAG, "loadData:PRINTING ALL " + all);
-
-            UserInformation uInfo = new UserInformation();
-            Log.d(TAG, "loadData:Test2 " + ds.child(userID).getValue());
             String name = ds.child(userID).getValue(UserInformation.class).getName();
             String age = ds.child(userID).getValue(UserInformation.class).getAge();
             String gender = ds.child(userID).getValue(UserInformation.class).getGender();
@@ -281,14 +255,12 @@ public class UserProfile extends AppCompatActivity {
             String favRock = ds.child(userID).getValue(UserInformation.class).getFavRock();
             String favClimbing = ds.child(userID).getValue(UserInformation.class).getFavClimbing();
 
-            Log.d(TAG, "loadData: " + name + gender + age + onSightBouldering + onSightTrad + onSightSport);
-
             etName.setText(name, TextView.BufferType.EDITABLE);
             etAge.setText(age, TextView.BufferType.EDITABLE);
             etFavouriteCrag.setText(favCrag, TextView.BufferType.EDITABLE);
             etFavouriteClimb.setText(favClimbing, TextView.BufferType.EDITABLE);
-            //HOW TO SET AGE?
 
+            //Setting spinner positions
             ArrayAdapter<CharSequence> gAdapter = ArrayAdapter.createFromResource(this, R.array.sGender, android.R.layout.simple_spinner_item);
             gAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             sGender.setAdapter(gAdapter);
@@ -361,8 +333,6 @@ public class UserProfile extends AppCompatActivity {
             }
 
         }
-
-
     }
 
     private void comments(){

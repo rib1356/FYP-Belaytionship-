@@ -29,7 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import rob_pc.fypbelaytionship.models.User;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -65,52 +64,55 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void registerUser(){
+    private void registerUser() {
 
         final String email = etEmail.getText().toString(); //Getting the text
         final String password = etPassword.getText().toString();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             etEmail.setError("Email is required");
             etEmail.requestFocus();
             return;
-        }
-//        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//            etEmail.setError("Enter a valid email");
-//            etEmail.requestFocus();
-//            return;
-//        }
-        if(password.isEmpty()){
+        } else if (password.isEmpty()) {
             etPassword.setError("Password is required");
             etPassword.requestFocus();
             return;
-        }
-        if(password.length() < 6){
+        } else if (password.length() < 6) {
             etPassword.setError("Minimum password length of 6");
             etPassword.requestFocus();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class); //Move to login screen
+                        RegisterActivity.this.startActivity(intent);
+
+                    } else if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(RegisterActivity.this, "Email already registered", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+
         }
+    }
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class); //Move to login screen
-                    RegisterActivity.this.startActivity(intent);
-
-                }
-                else if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                    Toast.makeText(RegisterActivity.this, "Email already registered", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(RegisterActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        });
-
+    public boolean emailValidation(String email, String password){
+        if (email.isEmpty()) {
+            return false;
+        }else if (password.isEmpty()) {
+            return false;
+        }else if (password.length() < 6) {
+            return false;
+        }
+        return true;
     }
 }
+
 
 
 //                Response.Listener<String> responseListener = new Response.Listener<String>() {
