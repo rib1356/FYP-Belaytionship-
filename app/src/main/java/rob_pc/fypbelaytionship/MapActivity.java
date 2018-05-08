@@ -24,6 +24,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -36,10 +40,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Boolean mLocationPermissionGranted = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference myRef;
+
+    double latitude;
+    double longitude;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+        FirebaseUser user = mAuth.getCurrentUser();
+
 
         getLocationPermission();
     }
@@ -58,9 +78,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: Found location");
                             Location currentLocation = (Location) task.getResult();
-
+                            latitude = currentLocation.getLatitude();
+                            longitude = currentLocation.getLongitude();
+                            firebaseSave();
                             //---------------------------REMEMBER TO CHANGE THIS------------------------------------------------------------------------------------------------------------
-                            moveCamera(new LatLng(54.570455, 1.328982), DEFAULT_ZOOM);
+                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {
                             Log.d(TAG, "onComplete: Current location is null");
                             Toast.makeText(MapActivity.this, "Unable to get current location", Toast.LENGTH_LONG).show();
@@ -76,6 +98,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void moveCamera(LatLng latLgn, float zoom) {
         Log.d(TAG, "moveCamera: Moving camera to, Lat: " + latLgn.latitude + ", Lng: " + latLgn.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLgn, zoom));
+
+    }
+
+    private void firebaseSave(){
+
+        Log.d(TAG, "onClick: Attempting to add object to database.");
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userID = user.getUid();
+        myRef.child("users").child(userID).child("location").child("Latitude").setValue(latitude);
+        myRef.child("users").child(userID).child("location").child("Longitude").setValue(longitude);
 
     }
 

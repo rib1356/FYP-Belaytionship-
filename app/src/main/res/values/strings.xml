@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FYP(Belaytionship)</string>
+    <string name="app_name">Belaytionship</string>
 
     <!-- Strings related to Login/Register -->
     <string name="bRegister">Register</string>
@@ -228,5 +228,8 @@
 
                                 \u2022 Climber: “Off belay.” (I’m standing securely on the ground.) \n
                                 \u2022 Belayer: “Belay off.” (I’ve stopped belaying you.) </string>
+    <string name="toast_text">Register Successful</string>
+    <string name="toast_text2">Successfully signed in with: test@test.com</string>
+
 
 </resources>

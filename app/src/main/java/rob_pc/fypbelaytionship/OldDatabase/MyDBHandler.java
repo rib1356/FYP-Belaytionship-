@@ -1,4 +1,4 @@
-package rob_pc.fypbelaytionship;
+package rob_pc.fypbelaytionship.OldDatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rob_pc.fypbelaytionship.UserInformation;
 
 
 public class MyDBHandler extends SQLiteOpenHelper {

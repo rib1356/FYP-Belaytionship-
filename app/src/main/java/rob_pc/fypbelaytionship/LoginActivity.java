@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import rob_pc.fypbelaytionship.models.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -122,8 +121,17 @@ public class LoginActivity extends AppCompatActivity {
         LoginActivity.this.startActivity(intent);
     }
 
+    public boolean emailValidation(String email, String password){
+        if (email.isEmpty()) {
+            return false;
+        }else if (password.isEmpty()) {
+            return false;
+        }else if (password.length() < 6) {
+            return false;
+        }
+        return true;
+    }
 }
-
 
 //    private void login(final String username, final String password){
 //        users.addListenerForSingleValueEvent(new ValueEventListener() {
