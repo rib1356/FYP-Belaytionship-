@@ -2,40 +2,23 @@ package rob_pc.fypbelaytionship;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
-//    FirebaseDatabase database;
-//    DatabaseReference users;
-    private FirebaseAuth mAuth;
 
+    private FirebaseAuth mAuth;
     EditText etEmail, etPassword;
 
 
@@ -43,10 +26,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        //Firebase
-//        database = FirebaseDatabase.getInstance();
-//        users = database.getReference("User");
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -72,11 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             etEmail.setError("Email is required");
             etEmail.requestFocus();
-            return;
         } else if (password.isEmpty()) {
             etPassword.setError("Password is required");
             etPassword.requestFocus();
-            return;
         } else if (password.length() < 6) {
             etPassword.setError("Minimum password length of 6");
             etPassword.requestFocus();
@@ -112,9 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 }
-
-
-
 //                Response.Listener<String> responseListener = new Response.Listener<String>() {
 //                    @Override
 //                    public void onResponse(String response) { //Happens when the response has been executed
