@@ -24,7 +24,6 @@ public class MainPage extends AppCompatActivity {
     private static final String TAG = "MainPage";
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +33,8 @@ public class MainPage extends AppCompatActivity {
         final Button bProfile = findViewById(R.id.bProfile);
         final Button bLogout = findViewById(R.id.bLogout);
         final Button bHS = findViewById(R.id.bHS);
-
         String username = "";
+
 
         final SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
         String restoredText = prefs.getString("username", null); //Get username
@@ -43,7 +42,7 @@ public class MainPage extends AppCompatActivity {
             username = prefs.getString("username", "No username defined"); //"No name defined" is the default value.
         }
 
-        String message = username + " Welcome";
+        String message = username + " Welcome"; //Sets the value from shared preferences on main page
         tvWelcome.setText(message);
 
         bProfile.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +57,9 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);  Should this be used rather than declaring final higher in code?
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear(); //Clear all of the shared preference data when the user logs out. This will stop them from automatically logging back in
-                editor.commit(); // commit changes
-
+                editor.commit();
                 Intent intent = new Intent(MainPage.this, LoginActivity.class);
                 MainPage.this.startActivity(intent);
             }
@@ -76,9 +73,9 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        if(isServicesOK()){
-            init();
-            statusCheck();
+        if(isServicesOK()){ //Checks the services method first
+            init(); //Initialised map
+            statusCheck(); //Checks if the user has location turned on
         }
 
     }
@@ -96,9 +93,8 @@ public class MainPage extends AppCompatActivity {
 
     public boolean isServicesOK() {
         Log.d(TAG, "isServicesOK: Checking google services version");
-
-        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainPage.this);
-        if (available == ConnectionResult.SUCCESS) {
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainPage.this); //Checks that user has googleplay services
+        if (available == ConnectionResult.SUCCESS) {                                                              //This allows for the user to be able to run the google maps api
             Log.d(TAG, "isServicesOK: Google play services is working");
             return true;
         } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
@@ -113,10 +109,9 @@ public class MainPage extends AppCompatActivity {
 
 
     public void statusCheck() {
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); //Checks if the user has location services activated
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) { //If not true show a dialog that allows for them to turn it on
             buildAlertMessageNoGps();
-
         }
     }
 
@@ -137,6 +132,4 @@ public class MainPage extends AppCompatActivity {
         final AlertDialog alert = builder.create();
         alert.show();
     }
-
-
 }

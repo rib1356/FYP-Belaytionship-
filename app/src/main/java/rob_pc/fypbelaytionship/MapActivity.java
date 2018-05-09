@@ -22,19 +22,23 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MapActivity";
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
-    private static final float DEFAULT_ZOOM = 10f;
+    private static final float DEFAULT_ZOOM = 15f;
 
     private GoogleMap mMap;
     private Boolean mLocationPermissionGranted = false;
@@ -42,7 +46,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
 
     double latitude;
@@ -54,12 +57,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-        FirebaseUser user = mAuth.getCurrentUser();
-
 
         getLocationPermission();
     }
@@ -69,7 +69,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        try {
+        try { //Used to get the users current location
             if (mLocationPermissionGranted) {
                 Task location = mFusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {
@@ -81,7 +81,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             latitude = currentLocation.getLatitude();
                             longitude = currentLocation.getLongitude();
                             firebaseSave();
-                            //---------------------------REMEMBER TO CHANGE THIS------------------------------------------------------------------------------------------------------------
+                            //Once found location move camera
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {
                             Log.d(TAG, "onComplete: Current location is null");
@@ -106,8 +106,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "onClick: Attempting to add object to database.");
         FirebaseUser user = mAuth.getCurrentUser();
         String userID = user.getUid();
-        myRef.child("users").child(userID).child("location").child("Latitude").setValue(latitude);
-        myRef.child("users").child(userID).child("location").child("Longitude").setValue(longitude);
+        myRef.child("users").child(userID).child("location").child("latitude").setValue(latitude);
+        myRef.child("users").child(userID).child("location").child("longitude").setValue(longitude);
 
     }
 
@@ -127,6 +127,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Log.d(TAG, "onMapReady: Location Enabled is true");
             mMap.setMyLocationEnabled(true);
         }
+        getLocations();
     }
 
     private void initMap(){
@@ -151,7 +152,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -197,7 +197,35 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return super.onOptionsItemSelected(item);
     }
 
+    public void getLocations(){
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Log.d(TAG, "onDataChange: Lat" + snapshot.child("location").child("latitude").getValue());
+                            Log.d(TAG, "onDataChange: Long" + snapshot.child("location").child("longitude").getValue());
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+        comments();
+    }
 
+    public void comments() {
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(54.571105, -1.336676))
+                .title("Rob2"));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(54.572908, -1.236465))
+                .title("Rob1"));
+
+
+    }
 
 }
 
